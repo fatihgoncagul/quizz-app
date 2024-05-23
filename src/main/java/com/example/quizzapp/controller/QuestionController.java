@@ -2,6 +2,8 @@ package com.example.quizzapp.controller;
 
 import com.example.quizzapp.model.Question;
 import com.example.quizzapp.service.QuestionService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,19 +19,19 @@ public class QuestionController {
     }
 
     @GetMapping("allQuestions")
-    public List<Question> getAllQuestions() {
+    public ResponseEntity<List<Question>> getAllQuestions() {
 
         return questionService.getAllQuestions();
     }
 
     @GetMapping("difficultylevel/{difficultylevel}")
-    public List<Question> getQuestionsByDiffLevel(@PathVariable String difficultylevel) {
+    public ResponseEntity<List<Question>> getQuestionsByDiffLevel(@PathVariable String difficultylevel) {
 
         return questionService.getQuestionsByDiffLevel(difficultylevel);
 
     }
     @PostMapping("add")
-    public String addQuestion(@RequestBody Question question) {
+    public ResponseEntity<String> addQuestion(@RequestBody Question question) {
         return questionService.addQuestion(question);
 
 
